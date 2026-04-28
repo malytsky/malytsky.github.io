@@ -1,0 +1,28 @@
+{
+  "name": "playworks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "deploy": "gh-pages -d dist",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/malytsky/playworks.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/malytsky/playworks/issues"
+  },
+  "homepage": "https://github.com/malytsky/playworks#readme",
+  "devDependencies": {
+    "gh-pages": "^6.3.0",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.10"
+  }
+}
