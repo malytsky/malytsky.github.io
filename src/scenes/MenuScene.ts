@@ -4,6 +4,7 @@ export abstract class MenuScene implements Scene {
   abstract id: SceneId;
   protected selectedIndex: number = 0;
   protected options: { label: string; action: () => void }[] = [];
+  protected topLinks: { label: string; action: () => void }[] = [];
   protected container: HTMLElement;
 
   constructor(container: HTMLElement) {
@@ -19,33 +20,49 @@ export abstract class MenuScene implements Scene {
   protected render() {
     this.container.innerHTML = `
       <div class="menu-container">
-        <h1 id="menu-question"></h1>
-        <div class="menu-options">
-          ${this.options.map((opt, index) => `
-            <div class="menu-option ${index === this.selectedIndex ? 'selected' : ''}">
-              ${opt.label}
+        <div class="top-links">
+          ${this.topLinks.map((link, index) => `
+            <div class="top-link ${index === this.selectedIndex ? 'selected' : ''}">
+              ${link.label}
             </div>
           `).join('')}
         </div>
+        <div id="menu-question-container"></div>
+        <div class="menu-options">
+          ${this.options.map((opt, index) => {
+            const globalIndex = index + this.topLinks.length;
+            return `
+              <div class="menu-option ${globalIndex === this.selectedIndex ? 'selected' : ''}">
+                ${opt.label}
+              </div>
+            `;
+          }).join('')}
+        </div>
       </div>
     `;
-    const questionEl = this.container.querySelector('#menu-question');
+    const questionEl = this.container.querySelector('#menu-question-container');
     if (questionEl) {
-      questionEl.textContent = this.getQuestion();
+      questionEl.innerHTML = this.getQuestion();
     }
   }
 
   abstract getQuestion(): string;
 
   onKeyDown(e: KeyboardEvent): void {
+    const totalItems = this.topLinks.length + this.options.length;
+    if (totalItems === 0) return;
+
     if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-      this.selectedIndex = (this.selectedIndex - 1 + this.options.length) % this.options.length;
+      this.selectedIndex = (this.selectedIndex - 1 + totalItems) % totalItems;
       this.render();
     } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-      this.selectedIndex = (this.selectedIndex + 1) % this.options.length;
+      this.selectedIndex = (this.selectedIndex + 1) % totalItems;
       this.render();
     } else if (e.key === 'Enter') {
-      this.options[this.selectedIndex].action();
+      const allItems = [...this.topLinks, ...this.options];
+      if (allItems[this.selectedIndex]) {
+        allItems[this.selectedIndex].action();
+      }
     }
   }
 }

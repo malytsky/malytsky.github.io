@@ -14,8 +14,9 @@ export class AdsScene implements Scene {
   init(): void {
     this.container.innerHTML = `
       <div class="ads-container">
-        <h2>Реклама от Google SDK</h2>
-        <p>Пожалуйста, подождите...</p>
+        <h2>Загрузка игры...</h2>
+        <p>Приготовьтесь! Скоро начнется увлекательная игра Змейка.</p>
+        <p style="font-size: 0.9em; color: #666;">Пожалуйста, подождите несколько секунд.</p>
         <div class="loader"></div>
       </div>
     `;
