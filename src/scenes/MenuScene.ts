@@ -1,10 +1,14 @@
 import { Scene, SceneId } from "../core/SceneManager";
 
+export interface MenuOption {
+  label: string;
+  action: () => void;
+}
+
 export abstract class MenuScene implements Scene {
   abstract id: SceneId;
   protected selectedIndex: number = 0;
-  protected options: { label: string; action: () => void }[] = [];
-  protected topLinks: { label: string; action: () => void }[] = [];
+  protected options: MenuOption[] = [];
   protected container: HTMLElement;
 
   constructor(container: HTMLElement) {
@@ -20,23 +24,13 @@ export abstract class MenuScene implements Scene {
   protected render() {
     this.container.innerHTML = `
       <div class="menu-container">
-        <div class="top-links">
-          ${this.topLinks.map((link, index) => `
-            <div class="top-link ${index === this.selectedIndex ? 'selected' : ''}">
-              ${link.label}
-            </div>
-          `).join('')}
-        </div>
         <div id="menu-question-container"></div>
         <div class="menu-options">
-          ${this.options.map((opt, index) => {
-            const globalIndex = index + this.topLinks.length;
-            return `
-              <div class="menu-option ${globalIndex === this.selectedIndex ? 'selected' : ''}">
-                ${opt.label}
-              </div>
-            `;
-          }).join('')}
+          ${this.options.map((opt, index) => `
+            <div class="menu-option ${index === this.selectedIndex ? 'selected' : ''}">
+              ${opt.label}
+            </div>
+          `).join('')}
         </div>
       </div>
     `;
@@ -49,7 +43,7 @@ export abstract class MenuScene implements Scene {
   abstract getQuestion(): string;
 
   onKeyDown(e: KeyboardEvent): void {
-    const totalItems = this.topLinks.length + this.options.length;
+    const totalItems = this.options.length;
     if (totalItems === 0) return;
 
     if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
@@ -59,9 +53,8 @@ export abstract class MenuScene implements Scene {
       this.selectedIndex = (this.selectedIndex + 1) % totalItems;
       this.render();
     } else if (e.key === 'Enter') {
-      const allItems = [...this.topLinks, ...this.options];
-      if (allItems[this.selectedIndex]) {
-        allItems[this.selectedIndex].action();
+      if (this.options[this.selectedIndex]) {
+        this.options[this.selectedIndex].action();
       }
     }
   }

@@ -8,7 +8,6 @@ export class ReplayScene extends MenuScene {
   constructor(container: HTMLElement, onReplay: () => void) {
     super(container);
     this.onReplay = onReplay;
-    this.topLinks = [];
     this.options = [
       { label: 'Да', action: () => this.onReplay() },
       { label: 'Нет', action: () => window.location.href = '/' }

@@ -8,12 +8,11 @@ export class GreetingScene extends MenuScene {
   constructor(container: HTMLElement, onStart: () => void) {
     super(container);
     this.onStart = onStart;
-    this.topLinks = [];
     this.options = [
       { label: 'Да', action: () => this.onStart() },
       { label: 'Нет', action: () => window.location.href = 'https://google.com' }
     ];
-    this.selectedIndex = 0; // Начинаем с кнопки "Да"
+    this.selectedIndex = 0;
   }
 
   init(): void {

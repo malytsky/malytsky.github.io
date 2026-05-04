@@ -25,99 +25,6 @@ body {
   flex-shrink: 0;
 }
 
-.static-page {
-  overflow: hidden;
-}
-
-.static-container {
-  width: 100%;
-  height: 100%;
-  padding: 40px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  background-color: #111;
-  text-align: left;
-}
-
-.static-container h1 {
-  color: #44ff44;
-  margin-top: 0;
-}
-
-.static-content {
-  overflow-y: auto;
-  flex-grow: 1;
-  margin-bottom: 20px;
-  padding-right: 10px;
-}
-
-.static-content h2 {
-  color: #44ff44;
-  font-size: 24px;
-}
-
-.static-content p, .static-content li {
-  font-size: 18px;
-  color: #ccc;
-  line-height: 1.4;
-}
-
-#seo-content {
-  max-width: 1280px;
-  width: 100%;
-  padding: 40px;
-  background: #222;
-  border-radius: 12px;
-  box-sizing: border-box;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-}
-
-.seo-section {
-  margin-bottom: 30px;
-}
-
-#seo-content h1 {
-  font-size: 36px;
-  color: #44ff44;
-  margin-top: 0;
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-#seo-content h2 {
-  font-size: 28px;
-  color: #44ff44;
-  border-bottom: 1px solid #444;
-  padding-bottom: 10px;
-  margin-top: 40px;
-}
-
-#seo-content p, #seo-content li {
-  font-size: 18px;
-  line-height: 1.6;
-  color: #ddd;
-}
-
-#seo-content ul {
-  padding-left: 20px;
-}
-
-.footer-info {
-  margin-top: 40px;
-  padding-top: 20px;
-  border-top: 1px solid #444;
-}
-
-.footer-info a {
-  color: #44ff44;
-  text-decoration: none;
-}
-
-.footer-info a:hover {
-  text-decoration: underline;
-}
-
 .menu-container {
   display: flex;
   flex-direction: column;
@@ -136,36 +43,6 @@ body {
   font-size: 28px;
   margin: 5px 0;
   text-align: center;
-}
-
-.info-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
-  max-width: 800px;
-  margin: 15px 0;
-}
-
-.info-block {
-  background: rgba(255, 255, 255, 0.05);
-  padding: 12px;
-  border-radius: 8px;
-  border-left: 4px solid #44ff44;
-}
-
-.info-block h3 {
-  margin: 0 0 5px 0;
-  color: #44ff44;
-  font-size: 18px;
-  text-align: left;
-}
-
-.info-block p {
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.4;
-  color: #ccc;
-  text-align: left;
 }
 
 .menu-options {
@@ -216,30 +93,6 @@ body {
   color: #000;
   transform: scale(1.05);
   box-shadow: 0 0 15px rgba(68, 255, 68, 0.5);
-}
-
-.ads-container {
-  text-align: center;
-  width: 100%;
-}
-
-.ads-container h2 {
-  font-size: 48px;
-}
-
-.loader {
-  border: 8px solid #f3f3f3;
-  border-top: 8px solid #3498db;
-  border-radius: 50%;
-  width: 80px;
-  height: 80px;
-  animation: spin 1s linear infinite;
-  margin: 40px auto;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
 }
 
 .game-container {
