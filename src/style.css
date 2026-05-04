@@ -23,7 +23,6 @@ body {
   align-items: center;
   box-shadow: 0 0 50px rgba(0,0,0,0.8);
   flex-shrink: 0;
-  pointer-events: none; /* Отключаем мышь */
 }
 
 .static-page {
